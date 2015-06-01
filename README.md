@@ -2,7 +2,8 @@
 
 Knockout Lottery number generator is a random lottery number generator using KnockoutJs
 
-  
+###Demo : http://ko-lottery.herokuapp.com/generator
+
 ### Version
 0.0.1
 

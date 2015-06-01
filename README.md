@@ -39,7 +39,7 @@ $ node app
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [jQuery]:http://jquery.com
 [express]:http://expressjs.com
-[KnockoutJs]:knockoutjs.com
+[KnockoutJs]:http://knockoutjs.com
 [jade]:http://jade-lang.com/
 
 

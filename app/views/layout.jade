@@ -10,8 +10,13 @@ html
         .navbar.navbar-inverse
             .container-fluid
                 .navbar-header
-                    a.navbar-brand(href='/') Brand
-                .navbar-collapse.collapse
+                    button.navbar-toggle.collapsed(type="button",data-toggle="collapse" data-target="#appNavBar")
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(ui-sref='main') Brand
+                .navbar-collapse.collapse(id="appNavBar")
                     ul.nav.navbar-nav
                         +createLink(state,'/','Home')
                         +createLink(state,'/generator','Generator')

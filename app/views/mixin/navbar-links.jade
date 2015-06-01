@@ -1,0 +1,7 @@
+mixin createLink(state,url,text)
+    if state == url
+        li.active
+            a.active(href=url)= text
+    else
+        li
+            a(href=url)= text

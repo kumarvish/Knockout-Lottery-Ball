@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="../assets/style/bootstrap-paper-theme.css">
+    <link rel="stylesheet" href="../assets/bower/animate.css/animate.css">
+    <link rel="stylesheet" href="../assets/style/main.css">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header"><a href="/" class="navbar-brand">Brand</a></div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/generator">Generator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h2 id="page-title" class="col-xs-12 col-sm-12 clearfix">Lottery number generator</h2>
+      <div id="lottery-picks" class="col-md-6 col-xs-12 col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Lucky Dip</h3>
+          </div>
+          <div class="panel-body picks-panel-body">
+            <div class="panel-toolbar">
+              <div class="btn-group col-xs-12">
+                <button id="generate-number" data-bind="click:generateNewNumbers" class="btn btn-success col-xs-12 col-sm-6"><span class="glyphicon glyphicon-refresh">&nbsp;New</span></button>
+                <button data-bind="click:addToWishList,css:{disabled:currentNumbers().length===0}" class="btn btn-warning col-xs-12 col-sm-6">&nbsp;Move to wish list</button>
+              </div>
+            </div>
+            <div class="picks col-xs-12 text-center"><!-- ko foreach:currentNumbers().numbers --><span data-bind="text:$data,attr:{class:'ballNumber'+$data},animate:{ animation: 'bounceIn', state: true}"></span><!-- /ko --></div>
+            <div data-bind="visible:currentNumbers().length===0" class="col-xs-12 text-center">
+              <h5 class="text-muted">click 'New' to generate</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="wish-list-panel" class="col-md-6 col-xs-12 col-sm-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">My wish list<a id="clear-wish-list-link" href="#" data-bind="click:clearWishList,visible:wishList().length&gt;1,tooltip:{title:'clear my wish list',placement:'left'}" class="pull-right">clear all</a></h3>
+          </div>
+          <div class="panel-body picks panel-body">
+            <div data-bind="foreach:wishList">
+              <div data-bind="animate:{ animation: 'rollIn', state: true}" class="picks col-xs-12 text-center"><!-- ko foreach:picks.numbers --><span data-bind="text:$data,attr:{class:'ballNumber'+$data}"></span><!-- /ko --><span data-bind="click:$root.removeFromWishList,tooltip:{title:'remove from my wish list',placement:'bottom'}" class="glyphicon glyphicon-remove-circle remove-from-wish-list"></span></div>
+            </div>
+            <div data-bind="visible:wishList().length===0" class="col-xs-12 text-center">
+              <h5 class="text-muted">Your wish list is empty</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/bower/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../assets/bower/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../assets/bower/knockout/dist/knockout.debug.js"></script>
+    <script type="text/javascript" src="../assets/bower/knockout-bootstrap/src/knockout-bootstrap.js"></script>
+    <script type="text/javascript" src="../assets/bower/knockout.animate/src/knockout.animate.js"></script>
+    <script type="text/javascript" src="./app.namespace.js"></script>
+    <script type="text/javascript" src="../services/getArrayWithRandomNumbers.js"></script>
+    <script type="text/javascript" src="../viewmodel/generator/vm.number.generator.js"></script>
+    <script type="text/javascript" src="../viewmodel/generator/generator.home.js"></script>
+  </body>
+</html>

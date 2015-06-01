@@ -1,0 +1,40 @@
+extends ../layout
+block content
+    .container
+        h2#page-title.col-xs-12.col-sm-12.clearfix Lottery number generator
+        #lottery-picks.col-md-6.col-xs-12.col-sm-12
+            .panel.panel-primary
+                .panel-heading
+                    h3.panel-title Lucky Dip
+                .panel-body.picks-panel-body
+                    .panel-toolbar
+                        .btn-group.col-xs-12
+                            button#generate-number.btn.btn-success.col-xs-12.col-sm-6(data-bind="click:generateNewNumbers")
+                                span.glyphicon.glyphicon-refresh &nbsp;New
+                            button.btn.btn-warning.col-xs-12.col-sm-6(data-bind="click:addToWishList,css:{disabled:currentNumbers().length===0}") &nbsp;Move to wish list
+                    .picks.col-xs-12.text-center
+                        <!-- ko foreach:currentNumbers().numbers -->
+                        span(data-bind="text:$data,attr:{class:'ballNumber'+$data},animate:{ animation: 'bounceIn', state: true}")
+                        <!-- /ko -->
+                    .col-xs-12.text-center(data-bind="visible:currentNumbers().length===0")
+                        h5.text-muted click 'New' to generate
+
+        #wish-list-panel.col-md-6.col-xs-12.col-sm-12
+            .panel.panel-info
+                .panel-heading
+                    h3.panel-title My wish list
+                        a#clear-wish-list-link.pull-right(href="#" data-bind="click:clearWishList,visible:wishList().length>1,tooltip:{title:'clear my wish list',placement:'left'}") clear all
+                .panel-body.picks.panel-body
+                    div(data-bind="foreach:wishList")
+                        .picks.col-xs-12.text-center(data-bind="animate:{ animation: 'rollIn', state: true}")
+                            <!-- ko foreach:picks.numbers -->
+                            span(data-bind="text:$data,attr:{class:'ballNumber'+$data}")
+                            <!-- /ko -->
+                            span.glyphicon.glyphicon-remove-circle.remove-from-wish-list(data-bind="click:$root.removeFromWishList,tooltip:{title:'remove from my wish list',placement:'bottom'}")
+                    .col-xs-12.text-center(data-bind="visible:wishList().length===0")
+                        h5.text-muted Your wish list is empty
+
+block additionalScripts
+    script(type="text/javascript", src="../services/getArrayWithRandomNumbers.js")
+    script(type="text/javascript", src="../viewmodel/generator/vm.number.generator.js")
+    script(type="text/javascript", src="../viewmodel/generator/generator.home.js")
